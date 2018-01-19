@@ -3518,9 +3518,9 @@ static bool CheckIndexAgainstCheckpoint(const CBlockIndex* pindexPrev, CValidati
 
 bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
 {
-	return false;
-//    LOCK(cs_main);
-//    return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_SEGWIT, versionbitscache) == THRESHOLD_ACTIVE);
+//	return false;
+    LOCK(cs_main);
+    return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_SEGWIT, versionbitscache) == THRESHOLD_ACTIVE);
 }
 
 // Compute at which vout of the block's coinbase transaction the witness
@@ -3639,7 +3639,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     if (VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_CSV, versionbitscache) == THRESHOLD_ACTIVE) {
         nLockTimeFlags |= LOCKTIME_MEDIAN_TIME_PAST;
     }
-
+/*
     if (IsUAHFenabled(consensusParams, pindexPrev)) {
         // If UAHF is enabled for the curent block, but not for the previous
         // block, we must check that the block is larger than 1MB.
@@ -3662,7 +3662,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
                              false, "size limits failed");
         }
     }
-
+*/
 
     int64_t nLockTimeCutoff = (nLockTimeFlags & LOCKTIME_MEDIAN_TIME_PAST)
                               ? pindexPrev->GetMedianTimePast()

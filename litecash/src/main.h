@@ -126,7 +126,7 @@ static const int64_t BLOCK_DOWNLOAD_TIMEOUT_PER_PEER = 500000;
 
 static const unsigned int DEFAULT_LIMITFREERELAY = 15;
 static const bool DEFAULT_RELAYPRIORITY = true;
-static const int64_t DEFAULT_MAX_TIP_AGE = 24 * 60 * 60;
+static const int64_t DEFAULT_MAX_TIP_AGE = 24 * 60 * 60 *14;
 
 /** Default for -permitbaremultisig */
 static const bool DEFAULT_PERMIT_BAREMULTISIG = true;
