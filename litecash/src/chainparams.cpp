@@ -135,7 +135,11 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("litecash.info", "dnsseed1.litecash.info"));
+        vSeeds.push_back(CDNSSeedData("litecash.info", "dnsseed2.litecash.info"));
+        vSeeds.push_back(CDNSSeedData("litecash.info", "dnsseed3.litecash.info"));
         vSeeds.push_back(CDNSSeedData("litecash.tech", "dnsseed1.litecash.tech"));
+        vSeeds.push_back(CDNSSeedData("litecash.tech", "dnsseed2.litecash.tech"));
+        vSeeds.push_back(CDNSSeedData("litecash.tech", "dnsseed3.litecash.tech"));
 //        vSeeds.push_back(CDNSSeedData("litecointools.com", "dnsseed.litecointools.com", true));
 //        vSeeds.push_back(CDNSSeedData("litecoinpool.org", "dnsseed.litecoinpool.org", true));
 //        vSeeds.push_back(CDNSSeedData("koin-project.com", "dnsseed.koin-project.com"));
