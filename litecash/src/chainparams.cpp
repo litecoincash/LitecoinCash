@@ -92,7 +92,8 @@ public:
         // hard fork
         consensus.LCHHeight = 1338540 ;
 		consensus.LCHInitBlockCount = 168000;
-
+		//DAA activie
+		consensus.DAAHeight = 1506810;
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -205,7 +206,8 @@ public:
         // hard fork
         consensus.LCHHeight = 1338540 ;
 		consensus.LCHInitBlockCount = 168000;
-
+		//DAA activie
+		consensus.DAAHeight = 1506810;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;

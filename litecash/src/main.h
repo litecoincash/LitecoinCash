@@ -303,7 +303,7 @@ void FlushStateToDisk();
 /** Prune block files and flush state to disk. */
 void PruneAndFlush();
 
-
+/** Check is UAHF has activated. */
 bool IsUAHFenabled(const Consensus::Params& consensusparams, const CBlockIndex *pindexPrev);
 bool IsUAHFenabledForCurrentBlock(const Consensus::Params& consensusparams);
 

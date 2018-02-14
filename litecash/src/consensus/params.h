@@ -39,6 +39,7 @@ struct BIP9Deployment {
 struct Params {
     /** Block height at which UAHF kicks in */
     int LCHHeight;
+    int DAAHeight;
 	int LCHInitBlockCount;
     /** Block height at which OP_RETURN replay protection stops */
     int antiReplayOpReturnSunsetHeight;

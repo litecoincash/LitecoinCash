@@ -3582,7 +3582,6 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     {
 		if ( block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
 		{
-			LogPrintf("Peer ffffssssss51----%x------%x\n",block.nBits,GetNextWorkRequired(pindexPrev, &block, consensusParams));
 			return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect proof of work");
 		}
     }
@@ -6098,8 +6097,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 }
             }
         }
-        LogPrintf("Peer %d sss22sss\n", pfrom->id);
-
         if (nodestate->nUnconnectingHeaders > 0) {
             LogPrint("net", "peer=%d: resetting nUnconnectingHeaders (%d -> 0)\n", pfrom->id, nodestate->nUnconnectingHeaders);
         }
@@ -6107,8 +6104,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
         assert(pindexLast);
         UpdateBlockAvailability(pfrom->GetId(), pindexLast->GetBlockHash());
-        LogPrintf("Peer %d sss33sss\n", pfrom->id);
-
         if (nCount == MAX_HEADERS_RESULTS) {
             // Headers message had its maximum size; the peer may have more headers.
             // TODO: optimize: if pindexLast is an ancestor of chainActive.Tip or pindexBestHeader, continue
@@ -6116,7 +6111,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             LogPrint("net", "more getheaders (%d) to end to peer=%d (startheight:%d)\n", pindexLast->nHeight, pfrom->id, pfrom->nStartingHeight);
             pfrom->PushMessage(NetMsgType::GETHEADERS, chainActive.GetLocator(pindexLast), uint256());
         }
-        LogPrintf("Peer %d sss44sss\n", pfrom->id);
 
         bool fCanDirectFetch = CanDirectFetch(chainparams.GetConsensus());
         // If this set of headers is valid and ends in a block with at least as
