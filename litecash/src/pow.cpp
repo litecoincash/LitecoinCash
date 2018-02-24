@@ -159,15 +159,10 @@ static arith_uint256 ComputeTarget(const CBlockIndex *pindexFirst,
     arith_uint256 work = pindexLast->nChainWork - pindexFirst->nChainWork;
     work *= params.nPowTargetSpacing;
 
-    // In order to avoid difficulty cliffs, we bound the amplitude of the
-    // adjustment we are going to do to a factor in [0.5, 2].
     int64_t nActualTimespan =
         int64_t(pindexLast->nTime) - int64_t(pindexFirst->nTime);
-    if (nActualTimespan > 288 * params.nPowTargetSpacing) {
-        nActualTimespan = 288 * params.nPowTargetSpacing;
-    } else if (nActualTimespan < 72 * params.nPowTargetSpacing) {
-        nActualTimespan = 72 * params.nPowTargetSpacing;
-    }
+    LogPrintf("%s: 333.ntarget=%ld,lastheight=%ld,firstheight=%ld,nActualtimespan=%ld,pindexLast->nChainWork=%u,pindexFirst->nChainWork=%u,init_work=,work=%ld\n",
+                    __func__,params.nPowTargetSpacing,pindexLast->nHeight,pindexFirst->nHeight,nActualTimespan,pindexLast->nChainWork.GetCompact(),pindexFirst->nChainWork.GetCompact(),work.GetCompact());
 
     work /= nActualTimespan;
 
@@ -229,7 +224,7 @@ unsigned int GetNextCashWorkRequired(const CBlockIndex *pindexPrev,
     assert(pindexPrev);
 
     // Special difficulty rule for testnet:
-    // If the new block's timestamp is more than 2* 10 minutes then allow
+    // If the new block's timestamp is more than 2* 2.5 minutes then allow
     // mining of a min-difficulty block.
     if (params.fPowAllowMinDifficultyBlocks &&
         (pblock->GetBlockTime() >
@@ -245,8 +240,9 @@ unsigned int GetNextCashWorkRequired(const CBlockIndex *pindexPrev,
     const CBlockIndex *pindexLast = GetSuitableBlock(pindexPrev);
     assert(pindexLast);
 
+
     // Get the first suitable block of the difficulty interval.
-    uint32_t nHeightFirst = nHeight - 144;
+    uint32_t nHeightFirst = nHeight - 576;
     const CBlockIndex *pindexFirst =
         GetSuitableBlock(pindexPrev->GetAncestor(nHeightFirst));
     assert(pindexFirst);
@@ -264,7 +260,7 @@ unsigned int GetNextCashWorkRequired(const CBlockIndex *pindexPrev,
 }
 
 static bool IsDAAEnabled(const Consensus::Params& consensusparams, int nHeight) {
-    return nHeight >= consensusparams.DAAHeight;
+    return nHeight > consensusparams.DAAHeight;
 }
 
 bool IsDAAEnabled(const Consensus::Params& consensusparams, const CBlockIndex *pindexPrev) {

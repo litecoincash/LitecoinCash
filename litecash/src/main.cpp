@@ -52,7 +52,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Litecoin cannot be compiled without assertions."
+# error "LCH cannot be compiled without assertions."
 #endif
 
 /**
